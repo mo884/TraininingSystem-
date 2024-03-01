@@ -1,0 +1,32 @@
+﻿@model GetAllProductVM
+<div class="col-lg-4">
+    <div class="card">
+        <div class="bg-image ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+
+            @if (@Model.Image!=null)
+            {
+                <img src="~/files/@Model.Image" class="w-100 hover-zoom-image" />
+
+            }else{
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp" class="w-100 hover-zoom-image" />
+
+            }
+            <a asp-action="select" asp-controller="Product" asp-route-id="@Model.ID">
+                <div class="mask">
+                    <div class="d-flex justify-content-start align-items-end h-100">
+                        <h5><span class="badge bg-primary ms-2">New</span></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title mb-3 text-success">@Model.Name</h5>
+            <p class="card-text text-muted">@Model.Description</p>
+            <h6 class="mb-3 text-danger">$@Model.Price</h6>
+            <a asp-action="Edit" asp-controller="Product" class="btn btn-success m-1" asp-route-id="@Model.ID">Edit</a>
+            <a asp-action="select" asp-controller="Product" class="btn btn-dark m-1" asp-route-id="@Model.ID">Select</a>
+            <a asp-action="Delete" asp-controller="Product" class="btn btn-danger m-1" asp-route-id="@Model.ID">Delete</a>
+
+        </div>
+    </div>
+</div>

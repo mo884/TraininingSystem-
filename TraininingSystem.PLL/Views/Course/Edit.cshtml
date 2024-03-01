@@ -1,0 +1,33 @@
+﻿@model EditCourseVM
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+        <form method="post" asp-controller="Course" asp-action="Edit">
+            <input type="hidden" asp-for="ID" />
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="Grade" class="form-label"> Grade</label>
+                    <input type="text" asp-for="Grade" class="form-control">
+                    <span asp-validation-for="Grade" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="TraineID" class="control-label">Traine</label>
+                <select asp-for="TraineID" class="form-control" asp-items="ViewBag.Trainers"></select>
+            </div>
+
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+
+        </form>
+        </<div>
+        </div>

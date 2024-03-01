@@ -1,0 +1,41 @@
+﻿@model CreateTrackVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+        <form method="post" asp-controller="Track" asp-action="Create">
+
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Track Name</label>
+                    <input type="text" asp-for="Name" class="form-control" id="DepartmentName" maxlength="50">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Track Description</label>
+                <input type="text" asp-for="Description" class="form-control" id="DeptDesc" aria-describedby="">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+          
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+
+        </form>
+        </<div>
+        </div>
+
+        @section JS {
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/js/validation-styling.js"></script>
+
+        }
+

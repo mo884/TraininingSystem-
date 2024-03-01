@@ -1,0 +1,13 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Select";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/files/@Model.Image" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-dark">Return</a>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model GetTrackByIdVM
+@{
+    ViewData["Title"] = "getById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+     
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Track Name</label>
+                <input disabled type="text" asp-for="Name" class="form-control" id="DepartmentName" maxlength="50">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Track Description</label>
+                <input type="text" disabled asp-for="Description" class="form-control" id="DeptDesc" aria-describedby="">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="mb-3">
+                <a  asp-action="Index" asp-controller="Track" class="btn btn-primary">retutn</a>
+
+            </div>
+
+        </<div>
+        </div>
+

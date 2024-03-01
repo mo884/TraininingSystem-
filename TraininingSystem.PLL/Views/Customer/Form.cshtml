@@ -1,0 +1,32 @@
+﻿@model CustomerVM
+<div class="mb-3">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"> Name</label>
+        <input type="text" asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"> Email</label>
+        <input type="text" asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="PhoneNum" class="form-label">PhoneNum</label>
+    <input type="text" asp-for="PhoneNum" class="form-control">
+    <span asp-validation-for="PhoneNum" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Gender" class="form-label"> Gender</label>
+
+    <select class="form-control" asp-for="Gender" class="selectpicker">
+        <option value="0">Male</option>
+        <option value="1">Female</option>
+
+    </select>
+
+</div>
+
+

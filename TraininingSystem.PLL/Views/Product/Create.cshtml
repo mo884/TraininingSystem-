@@ -1,0 +1,23 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+        <form method="post" asp-controller="Product" enctype="multipart/form-data" asp-action="Create">
+
+            <partial name="~/Views/Product/CreatePartial.cshtml" model="Model" />
+
+
+        </form>
+        </<div>
+        </div>
+
+        @section JS {
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/js/validation-styling.js"></script>
+
+        }
+

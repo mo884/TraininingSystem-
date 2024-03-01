@@ -1,0 +1,76 @@
+﻿@model CreateTraineWithTracksVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+        <form method="post" asp-controller="Trainee" asp-action="Create">
+
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"> Name</label>
+                    <input type="text" asp-for="Name" class="form-control">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Gender" class="form-label"> Gender</label>
+
+                <select class="form-control" asp-for="Gender" class="selectpicker">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+
+                </select>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="TrakID" class="form-label"> Track</label>
+
+                <select class="form-control" asp-for="TrakID" class="selectpicker">
+                    @foreach (var item in Model.Traks)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+
+                    }
+
+                </select>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label"> Phone</label>
+                        <input type="text" asp-for="Phone" class="form-control">
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"> Email</label>
+                        <input type="email" asp-for="Email" class="form-control">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label asp-for="Birthdate" class="form-label"> Birthdate</label>
+                        <input type="date" asp-for="Birthdate" class="form-control">
+                        <span asp-validation-for="Birthdate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </div>
+
+        </form>
+        </<div>
+        </div>
+
+        @section JS {
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/js/validation-styling.js"></script>
+
+        }
+
