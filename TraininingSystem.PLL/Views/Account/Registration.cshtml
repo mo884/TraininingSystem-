@@ -1,0 +1,65 @@
+﻿@model RegistrationVM
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card m-5" style="width:60rem;margin:auto;">
+    <div class="card-body">
+
+<form id="sign_up" method="POST" asp-controller="Account" asp-action="Registration">
+    <div class="msg">Register a new membership</div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label"> UserName</label>
+            <input type="text" class="form-control" asp-for="UserName" placeholder="Name Surname" required autofocus>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"> Email</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Email Address" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label"> FullName</label>
+                <input type="text" class="form-control" asp-for="FullName" minlength="6" placeholder="Confirm Password" required>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"> Password</label>
+            <input type="text" class="form-control" asp-for="Password" minlength="6" placeholder="Password" required>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label asp-for="ConfirmPassword" class="form-label"> ConfirmPassword</label>
+            <input type="text" class="form-control" asp-for="ConfirmPassword" minlength="6" placeholder="Confirm Password" required>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-check">
+                    <input type="checkbox" class="form-check-inpu" asp-for="IsAgree">
+                    <label asp-for="IsAgree" class="form-check-label" for="flexCheckDefault">
+            Default checkbox
+        </label>
+    </div>
+
+    <input type="submit" value="SIGN UP" class="btn btn-block btn-lg bg-pink waves-effect" />
+
+    <div class="m-t-25 m-b--5 align-center">
+        <a asp-controller="Account" asp-action="Login">You already have a membership?</a>
+    </div>
+</form>
+
+    </div>
+</div>

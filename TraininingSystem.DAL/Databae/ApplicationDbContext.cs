@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,15 @@ using TraininingSystem.DAL.Entity;
 
 namespace TraininingSystem.DAL.Databae
 {
-    public class ApplicationDbContext : DbContext
-    {
-
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opt) : base(opt)
+   
+        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
 
-        }
-        public  DbSet<Track> Traces { get; set; }
+            public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opt) : base(opt)
+            {
+
+            }
+            public  DbSet<Track> Traces { get; set; }
         public  DbSet<Trainee> Trainees { get; set; }
         public  DbSet<Course> Courses { get; set; }
         public  DbSet<Topic> Topics { get; set; }

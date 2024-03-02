@@ -20,6 +20,7 @@ namespace TraininingSystem.BLL.Mapping
             CreateMap<Track, GetAllTrackVM>();
 
             CreateMap<Track, CreateTrackVM>();
+            CreateMap<CreateTrackVM, Track>();
 
             CreateMap<Track, EditTrackVM>();
             CreateMap<EditTrackVM, Track>();
