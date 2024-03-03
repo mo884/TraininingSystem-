@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TraininingSystem.BLL.Feature.Interface;
@@ -8,6 +9,7 @@ using TraininingSystem.DAL.Entity;
 
 namespace TraininingSystem.PLL.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private readonly ICourseRepo courseRepo;

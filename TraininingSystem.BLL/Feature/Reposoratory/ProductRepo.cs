@@ -61,6 +61,11 @@ namespace TraininingSystem.BLL.Feature.Reposoratory
             return Mapper.Map<List<GetAllProductVM>>(applicationDbContext.Products.ToList());
         }
 
+        public List<ProductVM> GetByName(string name)
+        {
+            return Mapper.Map<List<ProductVM>>(applicationDbContext.Products.Where(a => a.Name==name).ToList());
+        }
+
         public ProductVM GetProductById(int Id)
         {
             return Mapper.Map<ProductVM>(applicationDbContext.Products.Where(a=>a.ID==Id).FirstOrDefault());

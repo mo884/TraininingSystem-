@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TraininingSystem.BLL.Feature.Interface;
 using TraininingSystem.BLL.ModelVM.TrackVM;
@@ -6,6 +7,7 @@ using TraininingSystem.BLL.ModelVM.TraineeVM;
 
 namespace TraininingSystem.PLL.Controllers
 {
+    [Authorize]
     public class TraineeController : Controller
     {
         private readonly ITraineeRepo trainRepo;

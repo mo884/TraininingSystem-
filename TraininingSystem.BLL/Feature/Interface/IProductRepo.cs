@@ -14,5 +14,7 @@ namespace TraininingSystem.BLL.Feature.Interface
         void Edit(ProductVM editProductVM);
         ProductVM GetProductById(int Id);
         void Delete(int id);
+
+        List<ProductVM> GetByName(string name);
     }
 }

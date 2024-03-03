@@ -61,144 +61,99 @@ namespace TraininingSystem.PLL.Controllers
         #endregion
 
 
-        //#region Login
+        #region Login
 
-        //public IActionResult Login()
-        //{
-        //    return View();
-        //}
+        public IActionResult Login()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Login(LoginVM model)
-        //{
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM model)
+        {
 
-        //    var userName = await userManager.FindByNameAsync(model.UserName);
-        //    var userEmail = await userManager.FindByEmailAsync(model.UserName);
+            var userName = await userManager.FindByNameAsync(model.UserName);
+            var userEmail = await userManager.FindByEmailAsync(model.Email);
 
-        //    dynamic result;
+            dynamic result;
 
-        //    if (userEmail != null)
-        //    {
-        //        result = await signInManager.PasswordSignInAsync(userEmail, model.Password, model.RememberMe, false);
-        //    }
-        //    else
-        //    {
-        //        result = await signInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
-        //    }
+            if (userEmail != null)
+            {
+                result = await signInManager.PasswordSignInAsync(userEmail, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Track");
+                }
 
-        //    if (result.Succeeded)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("", "Invalid UserName Or Password");
+            }
+            else if(userName !=null)
+            {
+                result = await signInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Track");
+                }
 
-        //    }
+            }
 
-        //    return View(model);
-        //}
+           
+            else
+            {
+                ModelState.AddModelError("", "Invalid UserName Or Password");
 
-        //#endregion
+            }
 
+            return View(model);
+        }
 
-        //#region Sign Out
-
-        //[HttpPost]
-        //public async Task<IActionResult> LogOff()
-        //{
-        //    await signInManager.SignOutAsync();
-        //    return RedirectToAction("Login");
-        //}
-
-        //#endregion
+        #endregion
 
 
-        //#region Forget Password
+        #region Sign Out
 
-        //public IActionResult ForgetPassword()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> LogOff()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
 
-        //public IActionResult ConfirmForgetPassword()
-        //{
-        //    return View();
-        //}
+        #endregion
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> ForgetPassword(ForgetPasswordVM model)
-        //{
-        //    var user = await userManager.FindByEmailAsync(model.Email);
+        #region Forget Password
 
-        //    if (user != null)
-        //    {
+        public IActionResult ForgetPassword()
+        {
+            ViewBag.Massage=null;
 
-        //        var token = await userManager.GeneratePasswordResetTokenAsync(user);
+            return View();
+        }
 
-        //        var passwordResetLink = Url.Action("ResetPassword", "Account", new { Email = model.Email, Token = token }, Request.Scheme);
+      
 
-        //        //MailSender.Mail("Password Reset", passwordResetLink);
-        //        //logger.Log(LogLevel.Warning, passwordResetLink);
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordVM model)
+        {
+            var user = await userManager.FindByEmailAsync(model.Email);
 
-        //        EventLog log = new EventLog();
-        //        log.Source = "Inventory System";
-        //        log.WriteEntry(passwordResetLink, EventLogEntryType.Information);
+            if (user != null)
+            {
 
-        //        return RedirectToAction("ConfirmForgetPassword");
-        //    }
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                model.Password =user.PasswordHash;
+                ViewBag.Massage="Done";
+                return View(model);
+            }
+            ViewBag.Massage="Email not true";
 
-        //    return RedirectToAction("ConfirmForgetPassword");
-        //}
+            return View(model);
+        }
 
-        //#endregion
+        #endregion
 
 
 
-        //#region Reset Password
-
-        //public IActionResult ResetPassword(string? Email, string? Token)
-        //{
-        //    if (Email != null && Token != null)
-        //    {
-        //        return View();
-        //    }
-        //    return RedirectToAction("ForgetPassword");
-        //}
-
-        //public IActionResult ConfirmResetPassword()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> ResetPassword(ResetPasswordVM model)
-        //{
-        //    var user = await userManager.FindByEmailAsync(model.Email);
-
-        //    if (user != null)
-        //    {
-        //        var result = await userManager.ResetPasswordAsync(user, model.Token, model.Password);
-
-        //        if (result.Succeeded)
-        //        {
-        //            return RedirectToAction("ConfirmResetPassword");
-        //        }
-
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-
-        //        return View(model);
-        //    }
-
-        //    return RedirectToAction("ConfirmResetPassword");
-        //}
-
-
-
-        //#endregion
+       
     }
 }

@@ -6,6 +6,7 @@ using TraininingSystem.BLL.Feature.Reposoratory;
 using TraininingSystem.BLL.ModelVM.ProductVM;
 using TraininingSystem.BLL.ModelVM.TrackVM;
 using TraininingSystem.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TraininingSystem.PLL.Controllers
 {
@@ -24,6 +25,11 @@ namespace TraininingSystem.PLL.Controllers
             return View(productRepo.getAll());
         }
 
+        public IActionResult Search(string name)
+        {
+            return View(productRepo.GetByName(name));
+        }
+        [Authorize]
         public IActionResult Create()
         {
             var Data = customerRepo.GetAll();
@@ -31,7 +37,7 @@ namespace TraininingSystem.PLL.Controllers
 
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult Create(ProductVM createProductVM)
         {
@@ -45,16 +51,16 @@ namespace TraininingSystem.PLL.Controllers
             ViewBag.Customer = new SelectList(Data, "ID", "Name");
             return View(createProductVM);
         }
-   
-    public IActionResult Edit(int id)
+        [Authorize]
+        public IActionResult Edit(int id)
     {
         var Data = customerRepo.GetAll();
         ViewBag.Customer = new SelectList(Data, "ID", "Name");
 
         return View(productRepo.GetProductById(id));
     }
-
-    [HttpPost]
+        [Authorize]
+        [HttpPost]
     public IActionResult Edit(ProductVM editProductVM)
     {
         if (ModelState.IsValid)
@@ -68,7 +74,7 @@ namespace TraininingSystem.PLL.Controllers
         return View(editProductVM);
     }
 
-
+        [Authorize]
         public IActionResult Select(int id)
         {
             var Data = productRepo.GetProductById(id);

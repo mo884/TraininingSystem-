@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TraininingSystem.BLL.Feature.Interface;
 using TraininingSystem.BLL.ModelVM.TrackVM;
 
 namespace TraininingSystem.PLL.Controllers
 {
+    [Authorize]
     public class TrackController : Controller
     {
         private readonly ITrackRepo trackRepo;
@@ -16,6 +18,7 @@ namespace TraininingSystem.PLL.Controllers
             this.trackRepo=trackRepo;
             Mapper=mapper;
         }
+
         [HttpGet]
         public IActionResult Index()
         {

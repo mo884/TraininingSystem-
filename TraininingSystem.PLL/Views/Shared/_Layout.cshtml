@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using TraininingSystem.DAL.Entity
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager;
+@{
+    dynamic user = null;
+    @if (signInManager.IsSignedIn(User))
+    {
+        var userinfo = await signInManager.UserManager.FindByNameAsync(User.Identity.Name);
+        user =await userManager.FindByNameAsync(User.Identity.Name);
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,13 +28,18 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Train System</a>
+                 @if (signInManager.IsSignedIn(User))
+                 {
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@user.FullName</a>
+                 }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (signInManager.IsSignedIn(User))
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Track" asp-action="Index">Track</a>
                         </li>
@@ -35,9 +52,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
                         </li>
+                      
+                        
+                          
+                        }
+
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
                         </li>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-danger text-white" asp-area="" asp-controller="Account" asp-action="LogOff">Log out</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

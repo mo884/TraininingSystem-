@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -8,6 +9,7 @@ using TraininingSystem.PLL.Models;
 
 namespace TraininingSystem.PLL.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly ICustomerRepo CustomerRepo;

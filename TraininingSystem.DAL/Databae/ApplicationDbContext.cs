@@ -10,14 +10,14 @@ using TraininingSystem.DAL.Entity;
 namespace TraininingSystem.DAL.Databae
 {
    
-        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-        {
+   public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+   {
 
             public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opt) : base(opt)
             {
 
             }
-            public  DbSet<Track> Traces { get; set; }
+        public  DbSet<Track> Traces { get; set; }
         public  DbSet<Trainee> Trainees { get; set; }
         public  DbSet<Course> Courses { get; set; }
         public  DbSet<Topic> Topics { get; set; }

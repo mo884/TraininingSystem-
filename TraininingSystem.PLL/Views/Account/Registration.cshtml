@@ -7,7 +7,10 @@
     <div class="card-body">
 
 <form id="sign_up" method="POST" asp-controller="Account" asp-action="Registration">
-    <div class="msg">Register a new membership</div>
+    <center>
+                <div class="msg text-success"><h1>Register</h1> </div>
+
+    </center>
 
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -29,7 +32,7 @@
             <div class="mb-3">
                 <div class="mb-3">
                     <label asp-for="FullName" class="form-label"> FullName</label>
-                <input type="text" class="form-control" asp-for="FullName" minlength="6" placeholder="Confirm Password" required>
+                    <input type="text" class="form-control" asp-for="FullName" minlength="6" placeholder="FullName" required>
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
                 <div class="mb-3">
@@ -54,10 +57,10 @@
         </label>
     </div>
 
-    <input type="submit" value="SIGN UP" class="btn btn-block btn-lg bg-pink waves-effect" />
+                <input type="submit" value="SIGN UP" class="btn btn-success" />
 
     <div class="m-t-25 m-b--5 align-center">
-        <a asp-controller="Account" asp-action="Login">You already have a membership?</a>
+        <a asp-controller="Account" asp-action="Login">You already have a ccount?</a>
     </div>
 </form>
 
